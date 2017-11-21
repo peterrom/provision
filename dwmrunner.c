@@ -73,6 +73,11 @@ status(void)
 {
 	Display *dpy;
 
+        /* If the root window title is set before dwm started, it will
+         * overwrite it with "dwm-<version>", causing 90 seconds of
+         * no-status madness. */
+        (void) sleep(1);
+
 	if ((dpy = XOpenDisplay(NULL)) == NULL)
 		exit(EXIT_FAILURE);
 
