@@ -74,7 +74,7 @@ status(void)
 	Display *dpy;
 
 	if ((dpy = XOpenDisplay(NULL)) == NULL)
-		abort();
+		exit(EXIT_FAILURE);
 
         /* Failing Xlib calls will terminate the application through
          * the default error handler */
@@ -97,7 +97,7 @@ rundwm(void)
 {
 	char *const argv[] = { "/usr/local/bin/dwm", NULL };
 	if (execve(argv[0], argv, environ) < 0)
-                abort();
+                exit(EXIT_FAILURE);
 }
 
 int
