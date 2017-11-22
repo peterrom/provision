@@ -72,6 +72,7 @@ static void
 status(void)
 {
 	Display *dpy;
+	XColor bgcolor;
 
         /* If the root window title is set before dwm started, it will
          * overwrite it with "dwm-<version>", causing 90 seconds of
@@ -83,7 +84,9 @@ status(void)
 
         /* Failing Xlib calls will terminate the application through
          * the default error handler */
-        (void) XSetWindowBackground(dpy, DefaultRootWindow(dpy), BlackPixel(dpy, DefaultScreen(dpy)));
+	(void) XParseColor(dpy, DefaultColormap(dpy, DefaultScreen(dpy)), "rgb:11/11/11", &bgcolor);
+	(void) XAllocColor(dpy, DefaultColormap(dpy, DefaultScreen(dpy)), &bgcolor);
+        (void) XSetWindowBackground(dpy, DefaultRootWindow(dpy), bgcolor.pixel);
         (void) XClearWindow(dpy, DefaultRootWindow(dpy));
 
 	for (;;) {
