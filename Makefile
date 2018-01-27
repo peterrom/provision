@@ -18,12 +18,14 @@ all: general wm other
 		python3.6-venv
 	touch $@
 
-.emacs-config: .apt-packages
-	git clone https://github.com/peterrom/.emacs.d.git ~/.emacs.d
-	touch $@
+~/.emacs.d:
+	mkdir $@
+
+~/.emacs.d/init.el: | ~/.emacs.d
+	ln -s init.el $@
 
 .PHONY: general
-general: .emacs-config
+general: ~/.emacs.d/init.el
 
 # dwm as window manager
 dwm: .apt-packages
@@ -62,8 +64,8 @@ wm: /usr/share/xsessions/dwm.desktop .dmenu-install
 
 # other settings
 .switch-apple-func-keys-mode:
-	echo options hid_apple fnmode=2 >> /etc/modprobe.d/hid_apple.conf
-	update-initramfs -u -k all
+	echo options hid_apple fnmode=2 | sudo tee -a /etc/modprobe.d/hid_apple.conf
+	sudo update-initramfs -u -k all
 	touch $@
 
 /etc/xorg.conf: xorg.conf
