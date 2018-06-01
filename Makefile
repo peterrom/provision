@@ -15,7 +15,8 @@ all: general wm other
 		silversearcher-ag \
 		net-tools \
 		python3.6 \
-		python3.6-venv
+		python3.6-venv \
+		manpages-dev
 	touch $@
 
 ~/.emacs.d:
