@@ -22,8 +22,8 @@ all: general wm other
 ~/.emacs.d:
 	mkdir $@
 
-~/.emacs.d/init.el: | ~/.emacs.d
-	ln -s init.el $@
+~/.emacs.d/init.el: init.el | ~/.emacs.d
+	ln -s $(abspath $^) $@
 
 .PHONY: general
 general: ~/.emacs.d/init.el
