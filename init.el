@@ -3,7 +3,7 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
 
-(package-initialize)
+(unless package--initialized (package-initialize t))
 
 (defun packages-install (packages)
   (dolist (it packages)
@@ -23,6 +23,7 @@
      flycheck
      projectile
      flx-ido
+     ido-vertical-mode
      avy)))
 
 (condition-case nil
@@ -41,6 +42,9 @@
 (ido-mode 1)
 (ido-everywhere 1)
 (flx-ido-mode 1)
+
+(ido-vertical-mode t)
+(setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
 
 ;; disable ido faces to see flx highlights.
 (setq ido-enable-flex-matching t)
@@ -135,6 +139,8 @@
 
 (defun my-slide/start ()
   (interactive)
+  (let ((text-scale-mode-step (/ (window-body-width) 81.0)))
+    (text-scale-increase 1))
   (widen)
   (narrow-to-page)
   (local-set-key (kbd "<f6>") #'my-slide/next)
@@ -143,6 +149,7 @@
 
 (defun my-slide/stop ()
   (interactive)
+  (text-scale-increase 0)
   (widen)
   (local-unset-key (kbd "<f6>"))
   (local-unset-key (kbd "<f5>"))
