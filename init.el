@@ -24,7 +24,8 @@
      projectile
      flx-ido
      ido-vertical-mode
-     avy)))
+     avy
+     ag)))
 
 (condition-case nil
     (init--install-packages)
@@ -144,16 +145,16 @@
   (widen)
   (narrow-to-page)
   (local-set-key (kbd "<f6>") #'my-slide/next)
-  (local-set-key (kbd "<f5>") #'my-slide/prev)
-  (local-set-key (kbd "C-<f6>") #'my-slide/stop))
+  (local-set-key (kbd "C-<f6>") #'my-slide/prev)
+  (local-set-key (kbd "C-c <f6>") #'my-slide/stop))
 
 (defun my-slide/stop ()
   (interactive)
   (text-scale-increase 0)
   (widen)
   (local-unset-key (kbd "<f6>"))
-  (local-unset-key (kbd "<f5>"))
-  (local-unset-key (kbd "C-<f6>")))
+  (local-unset-key (kbd "C-<f6>"))
+  (local-unset-key (kbd "C-c <f6>")))
 
 
 
@@ -161,22 +162,23 @@
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 (global-set-key (kbd "C-M-x") 'execute-extended-command)
 
-(global-set-key (kbd "<f2>") 'dired-jump)
-(global-set-key (kbd "C-<f2>") 'dired-jump-other-window)
-
-(global-set-key (kbd "<f10>") 'hippie-expand)
 (global-set-key (kbd "C-c o") 'ff-find-other-file)
-
-(global-set-key (kbd "<f7>") 'er/expand-region)
-
-(global-set-key (kbd "<f8>") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<f8>") 'mc/mark-previous-like-this)
-
-(global-set-key (kbd "<f9>") 'avy-goto-char)
 
 (global-set-key (kbd "<f1>") 'ido-find-file)
 (global-set-key (kbd "C-<f1>") 'ido-switch-buffer)
 
-(global-set-key (kbd "<f12>") 'magit-status)
+(global-set-key (kbd "<f2>") 'dired-jump)
+(global-set-key (kbd "C-<f2>") 'dired-jump-other-window)
+
+(global-set-key (kbd "<f5>") 'woman)
 
 (global-set-key (kbd "<f6>") 'my-slide/start)
+
+(global-set-key (kbd "<f7>") 'er/expand-region)
+(global-set-key (kbd "<f8>") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<f8>") 'mc/mark-previous-like-this)
+(global-set-key (kbd "<f9>") 'avy-goto-char)
+
+(global-set-key (kbd "<f10>") 'hippie-expand)
+
+(global-set-key (kbd "<f12>") 'magit-status)
