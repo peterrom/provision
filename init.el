@@ -21,10 +21,8 @@
      expand-region
      multiple-cursors
      flycheck
-     projectile
      flx-ido
      ido-vertical-mode
-     avy
      ag)))
 
 (condition-case nil
@@ -177,7 +175,6 @@
 (global-set-key (kbd "<f7>") 'er/expand-region)
 (global-set-key (kbd "<f8>") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<f8>") 'mc/mark-previous-like-this)
-(global-set-key (kbd "<f9>") 'avy-goto-char)
 
 (global-set-key (kbd "<f10>") 'hippie-expand)
 

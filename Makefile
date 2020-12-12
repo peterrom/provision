@@ -14,8 +14,8 @@ all: general wm other
 		emacs-snapshot \
 		silversearcher-ag \
 		net-tools \
-		python3.6 \
-		python3.6-venv \
+		python3.9 \
+		python3.9-venv \
 		manpages-dev
 	touch $@
 
@@ -64,13 +64,8 @@ dwmrunner: dwmrunner.c
 wm: /usr/share/xsessions/dwm.desktop .dmenu-install
 
 # other settings
-.switch-apple-func-keys-mode:
-	echo options hid_apple fnmode=2 | sudo tee -a /etc/modprobe.d/hid_apple.conf
-	sudo update-initramfs -u -k all
-	touch $@
-
 /etc/xorg.conf: xorg.conf
 	sudo cp $< $@
 
 .PHONY: other
-other: .switch-apple-func-keys-mode /etc/xorg.conf
+other: /etc/xorg.conf

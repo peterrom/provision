@@ -2,7 +2,3 @@
 Name=dwm
 Comment=This session logs you into Ubuntu using dwm
 Exec=dwmrunner
-TryExec=dwmrunner
-Icon=
-Type=Application
-DesktopNames=dwm
